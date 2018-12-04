@@ -17,11 +17,11 @@ describe('Test Input', () => {
 describe('Challenge Input', () => {
     const processedInput = processInputs(input);
 
-    test('Part One Should Return 240', () => {
+    test('Part One Should Return 12169', () => {
         expect(partOne(processedInput)).toBe(12169);
     });
 
-    test('Part Two Should Return 4455', () => {
+    test('Part Two Should Return 16164', () => {
         expect(partTwo(processedInput)).toBe(16164);
     });
 });
