@@ -1,48 +1,45 @@
 import input from './input.txt';
 
-export const partOne = function (polymer) {
-    polymer = polymer.split("");
-    let changes = 0;
-    let breakIf = 0;
-    //while(changes === 0) {
-        changes = 0;
-        let i = 0;
-        while (i < polymer.length) {
-            let a = polymer[i];
-            let b = polymer[i + 1];
-            if (a && b && a != b && a.toLowerCase() === b.toLowerCase()) {
-                polymer.splice(i, 2);
-                i = i - 2;
-                changes++;
-            }
-            breakIf++;
-            i++;
+const reactPolymer = function (polymer) {
+    let i = 0;
+    while (i < polymer.length) {
+        let a = polymer[i];
+        let b = polymer[i + 1];
+        if (a && b && a != b && a.toLowerCase() === b.toLowerCase()) {
+            polymer.splice(i, 2);
+            i = i - 2;
         }
-    //}
-    return polymer.join();
+        i++;
+    }
+    return polymer;
+}
+
+export const partOne = function (polymer) {
+    return reactPolymer(polymer.split("")).length;
 }
 
 export const partTwo = function(polymer) {
+    const units = "abcdefghijklmnopqrstuvwxyz".split("");
+    let min = Infinity;
     polymer = polymer.split("");
-    let changes = 0;
-    while(changes === 0) {
-        changes = 0;
-        for (let i = 0; i < polymer.length; i++) {
-            let a = polymer[i];
-            let b = polymer[i + 1];
-            if (a != b && a.toLowerCase() === b.toLowerCase()) {
-                polymer.splice(i, 2);
-                i = i - 2;
-                changes++;
-            }
+
+    for (let i = 0; i < units.length; i++) {
+        let filteredPolymer = polymer.filter((x) => {
+            return x.toLowerCase() !== units[i];
+        })
+
+        let reactedPolymer = reactPolymer(filteredPolymer);
+        if (reactedPolymer.length < min) {
+            min = reactedPolymer.length;
         }
     }
-    return polymer;   
+
+    return min;
 }
 
 export default function () {
     return {
-        //partOne: partOne(processedEvents),
-        //partTwo: partTwo(processedEvents),
+        partOne: partOne(input),
+        partTwo: partTwo(input),
     }
 }

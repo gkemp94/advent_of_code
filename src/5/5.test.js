@@ -1,45 +1,38 @@
+import { partOne, partTwo } from './index';
 import input from './input.txt';
 
-const reactPolymer = function (polymer) {
-    let i = 0;
-    while (i < polymer.length) {
-        let a = polymer[i];
-        let b = polymer[i + 1];
-        if (a && b && a != b && a.toLowerCase() === b.toLowerCase()) {
-            polymer.splice(i, 2);
-            i = i - 2;
-        }
-        i++;
-    }
-    return polymer;
-}
+describe('Part One', () => {
+    test('aA Should Return 0', () => {
+        expect(partOne("aA")).toBe(0);
+    });
 
-export const partOne = function (polymer) {
-    return reactPolymer(polymer.split("")).length;
-}
+    test('abBA Should Return 0', () => {
+        expect(partOne("abBA")).toBe(0);
+    });
 
-export const partTwo = function(polymer) {
-    const units = "abcdefghijklmnopqrstuvwxyz".split("");
-    let min = Infinity;
-    polymer = polymer.split("");
+    test('abAB Should Return 4', () => {
+        expect(partOne("abAB")).toBe(4);
+    });
 
-    for (let i = 0; i < units.length; i++) {
-        let filteredPolymer = polymer.filter((x) => {
-            return x.toLowerCase() !== units[i];
-        })
+    test('aabAAB Should Return 6', () => {
+        expect(partOne("aabAAB")).toBe(6);
+    });
 
-        let reactedPolymer = reactPolymer(filteredPolymer);
-        if (reactedPolymer.length < min) {
-            min = reactedPolymer.length;
-        }
-    }
+    test('dabAcCaCBAcCcaDA Should Return 10', () => {
+        expect(partOne("dabAcCaCBAcCcaDA")).toBe(10);
+    });
 
-    return min;
-}
+    test('Challenge Input Should Return 0', () => {
+        expect(partOne(input)).toBe(11636);
+    });
+});
 
-export default function () {
-    return {
-        partOne: partOne(input),
-        partTwo: partTwo(input),
-    }
-}
+describe('Part Two', () => {
+    test('dabAcCaCBAcCcaDA Should Return 4', () => {
+        expect(partTwo("dabAcCaCBAcCcaDA")).toBe(4);
+    });
+
+    test('Challenge Input Should Return ', () => {
+        expect(partTwo(input)).toBe(5302);
+    });
+});
