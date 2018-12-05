@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "jest --watchAll"
+    "test": "jest --watch"
   },
   "dependencies": {
     "moment": "^2.22.2"
