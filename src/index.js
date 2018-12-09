@@ -1,4 +1,3 @@
-import { partTwo, processInput} from './days/8';
-import input from './days/8/input.test.txt';
+import { partOne} from './days/9';
 
-console.log(partTwo(processInput(input)));
+console.log(partOne("9 players; last marble is worth 25 points"));
